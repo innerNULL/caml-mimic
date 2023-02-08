@@ -16,6 +16,13 @@ Code for the paper [Explainable Prediction of Medical Codes from Clinical Text](
 
 Other versions may also work, but the ones listed are the ones I've used
 
+You can get your python environment by:
+```
+python3 -m venv ./_venv --copies
+source _venv/bin/activte
+python -m pip install -r ./requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
+```
+
 
 ## Data processing
 
