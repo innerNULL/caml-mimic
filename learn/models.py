@@ -190,14 +190,19 @@ class ConvAttnPool(BaseModel):
         if desc_data is not None:
             #run descriptions through description module
             b_batch = self.embed_descriptions(desc_data, self.gpu)
-            #get l2 similarity loss
-            diffs = self._compare_label_embeddings(target, b_batch, desc_data)
+            if target is not None:
+                #get l2 similarity loss
+                diffs = self._compare_label_embeddings(target, b_batch, desc_data)
+            else:
+                diffs = None
         else:
             diffs = None
             
         #final sigmoid to get predictions
         yhat = y
-        loss = self._get_loss(yhat, target, diffs)
+        loss = None
+        if target is not None:
+            loss = self._get_loss(yhat, target, diffs)
         return yhat, loss, alpha
 
 
